@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ELO Tarot – League of Legends Champion Picker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <div class="logo-block">
+        <div class="logo-title">ELO.TAROT</div>
+        <div class="logo-subtitle">A League of Legends Champion Reading</div>
+      </div>
+      <nav class="header-nav">
+        <a href="#" class="nav-link active">Tarot</a>
+        <!-- space for future modes -->
+      </nav>
+    </header>
+
+    <main class="site-main">
+      <!-- LEFT SIDE: controls -->
+      <section class="controls-panel">
+        <h2 class="panel-title">Summoner Setup</h2>
+
+        <!-- Profile selection -->
+        <div class="control-group">
+          <label for="profileSelect" class="control-label">Active Profile</label>
+          <div class="profile-row">
+            <select id="profileSelect" class="input-select"></select>
+            <button id="addProfileBtn" class="btn-secondary" type="button">New</button>
+            <button id="deleteProfileBtn" class="btn-secondary" type="button">Delete</button>
+          </div>
+          <p class="helper-text">
+            Profiles store which champions you want to <strong>exclude</strong> from rolls.
+          </p>
+        </div>
+
+        <!-- Role filter -->
+        <div class="control-group">
+          <span class="control-label">Role Filter</span>
+          <div id="roleButtons" class="role-buttons">
+            <button data-role="all" class="role-btn role-btn-active">All</button>
+            <button data-role="top" class="role-btn">Top</button>
+            <button data-role="jungle" class="role-btn">Jungle</button>
+            <button data-role="mid" class="role-btn">Mid</button>
+            <button data-role="adc" class="role-btn">ADC</button>
+            <button data-role="support" class="role-btn">Support</button>
+          </div>
+        </div>
+
+        <!-- Exclusions -->
+        <div class="control-group">
+          <span class="control-label">Champion Pool</span>
+          <button id="editExclusionsBtn" class="btn-outline" type="button">
+            Edit Exclusions
+          </button>
+          <p class="helper-text">
+            Excluded champions will never appear for this profile.
+          </p>
+        </div>
+
+        <!-- Card options -->
+            <div class="control-group">
+            <span class="control-label">Card Options</span>
+
+            <div class="card-options-row">
+                <div class="card-count-group">
+                <div class="card-count-control">
+                    <input
+                    id="cardCountSlider"
+                    type="range"
+                    min="1"
+                    max="5"
+                    value="3"
+                    />
+                    <span id="cardCountValue" class="card-count-value">3</span>
+                </div>
+                <p class="helper-text small">
+                Choose how many champions appear each reading can show up.
+                    </p>
+                </div>
+
+                <label class="wildcard-toggle">
+                <input id="wildcardToggle" type="checkbox" checked />
+                <span>Include Wildcard</span>
+                </label>
+            </div>
+
+        <p class="helper-text small">
+            Choose whether the Wildcard can show up.
+        </p>
+        </div>
+
+        <!-- Action -->
+        <div class="control-group">
+          <button id="beginReadingBtn" class="btn-primary" type="button">
+            Begin Reading
+          </button>
+          <p class="helper-text small">
+            The deck will reveal <strong>three fates</strong>. You choose one.
+          </p>
+        </div>
+      </section>
+
+      <!-- RIGHT SIDE: tarot experience -->
+      <section class="tarot-panel">
+        <div class="tarot-header">
+          <h2 class="panel-title">Tarot of Legends</h2>
+          <p class="tarot-tagline">
+            Click the cards in order to reveal your champions. When all are shown,
+            choose your fate.
+          </p>
+        </div>
+
+        <div id="tarotCardsRow" class="tarot-cards-row">
+          <!-- Card 0 -->
+          <div class="tarot-card-slot" data-index="0">
+            <div class="tarot-card">
+              <div class="tarot-card-face tarot-card-back">
+                <div class="tarot-back-symbol">✶</div>
+                <div class="tarot-back-text">Click to Reveal</div>
+              </div>
+              <div class="tarot-card-face tarot-card-front">
+                <img class="tarot-card-image" alt="Champion" />
+                <div class="tarot-card-info">
+                  <span class="tarot-card-name"></span>
+                  <span class="tarot-card-role"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 1 -->
+          <div class="tarot-card-slot" data-index="1">
+            <div class="tarot-card">
+              <div class="tarot-card-face tarot-card-back">
+                <div class="tarot-back-symbol">✶</div>
+                <div class="tarot-back-text">Click to Reveal</div>
+              </div>
+              <div class="tarot-card-face tarot-card-front">
+                <img class="tarot-card-image" alt="Champion" />
+                <div class="tarot-card-info">
+                  <span class="tarot-card-name"></span>
+                  <span class="tarot-card-role"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="tarot-card-slot" data-index="2">
+            <div class="tarot-card">
+              <div class="tarot-card-face tarot-card-back">
+                <div class="tarot-back-symbol">✶</div>
+                <div class="tarot-back-text">Click to Reveal</div>
+              </div>
+              <div class="tarot-card-face tarot-card-front">
+                <img class="tarot-card-image" alt="Champion" />
+                <div class="tarot-card-info">
+                  <span class="tarot-card-name"></span>
+                  <span class="tarot-card-role"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="tarot-card-slot" data-index="3">
+            <div class="tarot-card">
+              <div class="tarot-card-face tarot-card-back">
+                <div class="tarot-back-symbol">✶</div>
+                <div class="tarot-back-text">Click to Reveal</div>
+              </div>
+              <div class="tarot-card-face tarot-card-front">
+                <img class="tarot-card-image" alt="Champion" />
+                <div class="tarot-card-info">
+                  <span class="tarot-card-name"></span>
+                  <span class="tarot-card-role"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="tarot-card-slot" data-index="4">
+            <div class="tarot-card">
+              <div class="tarot-card-face tarot-card-back">
+                <div class="tarot-back-symbol">✶</div>
+                <div class="tarot-back-text">Click to Reveal</div>
+              </div>
+              <div class="tarot-card-face tarot-card-front">
+                <img class="tarot-card-image" alt="Champion" />
+                <div class="tarot-card-info">
+                  <span class="tarot-card-name"></span>
+                  <span class="tarot-card-role"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result / actions -->
+        <div id="tarotResult" class="tarot-result hidden">
+          <p id="resultText"></p>
+          <button id="drawAgainBtn" class="btn-secondary" type="button">
+            Draw Again
+          </button>
+        </div>
+
+        <div id="tarotHint" class="tarot-hint">
+          Click <strong>Begin Reading</strong> to shuffle the deck for your current profile &amp; role.
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p class="footer-text">
+        Not affiliated with Riot Games. Champion art from Riot’s Data Dragon CDN.
+      </p>
+    </footer>
+  </div>
+
+  <!-- Exclusion modal -->
+  <div id="exclusionModal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Champion Exclusions</h3>
+        <button id="closeModalBtn" class="modal-close" type="button">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="helper-text">
+          Checked champions will be <strong>excluded</strong> for the active profile.
+        </p>
+        <input
+          id="champSearchInput"
+          type="text"
+          class="input-text"
+          placeholder="Search champions..."
+        />
+        <div id="champListContainer" class="champ-list-container">
+          <!-- dynamically filled -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="clearExclusionsBtn" class="btn-outline" type="button">
+          Clear All Exclusions
+        </button>
+        <button id="saveExclusionsBtn" class="btn-primary" type="button">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="champions.generated.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
